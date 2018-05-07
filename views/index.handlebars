@@ -1,7 +1,4 @@
-<h1>Eat-Da-Burger!</h1>
-
-
-
+{{!-- <h1>Eat-Da-Burger!</h1>
 <ul>
   {{#each burgers}}
     {{#unless devoured}}
@@ -19,19 +16,72 @@
   {{/each}}
 </ul>
 
-<h2>Add a Burger</h2>
+
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
+    <label for="bu">Burger Name:</label>
+    <input type="text" id="bu" name="name">
   </div>
 
   <div class="form-group">
     <label for="devo">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-    <input type="radio" name="devoured" value="0"> Not Devoured
+    <button type="devour">Devour it!</button>
   </div>
 
-  <button type="submit">Add Burger</button>
+  <button type="submit">Submit</button>
+  <h4> Enter burger you want to eat Click the "Submit" button</h4>
 </form>
+
+
+<h1>Update the burger with an id of {{this.id}}</h1>
+
+<form data-id="{{this.id}}" class="update-form">
+
+  <div class="form-group">
+    <label for="bu">Burger:</label>
+    <input type="text" id="bu" name="burger" value="{{this.burger}}">
+  </div>
+
+  <button type="submit">Update Burger</button>
+</form>
+ --}}
+
+
+<div class="container">
+    <section id="page-name">
+            <h1>Eat-Da-Buger</h1>
+    </section>
+
+    <section class="row">
+        <div class="col-md-7 col-left">
+            <table>
+                {{#each burgers}}
+                    {{#unless devoured}}
+                        {{> burgers}}
+                    {{/unless}}
+                {{/each}}
+            </table>
+        </div>
+        <div class="col-md-5 col-right">
+            {{#each burgers}}
+                {{#if devoured}}
+                    <div>{{id}}. {{burger_name}}</div>
+                {{/if}}
+            {{/each}}        
+        </div>          
+    </section>
+
+    <tr class="table-row">
+       <td class="table-first-col">{{id}}. {{burger_name}}</td>
+       <td><button class="change-devour" data-id="{{id}}">Devour it!</button></td> 
+    </tr>
+
+    <form class="create-form">
+        <div class="form-group">
+            <label for="name"></label>
+            <textarea id="name" name="burger-name" rows="2" cols="40" placeholder="What do you want to eat?"></textarea>
+        </div>
+        <button type="submit">Add Burger</button>
+    </form>     
+</div>
