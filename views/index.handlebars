@@ -1,87 +1,68 @@
-{{!-- <h1>Eat-Da-Burger!</h1>
-<ul>
-  {{#each burgers}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devoured=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-
-<ul>
-  {{#each burgers}}
-    {{#if devoured}}
-      {{> burgers/burger-block devoured=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="bu">Burger Name:</label>
-    <input type="text" id="bu" name="name">
-  </div>
-
-  <div class="form-group">
-    <label for="devo">Devoured?</label><br>
-    <button type="devour">Devour it!</button>
-  </div>
-
-  <button type="submit">Submit</button>
-  <h4> Enter burger you want to eat Click the "Submit" button</h4>
-</form>
-
-
-<h1>Update the burger with an id of {{this.id}}</h1>
-
-<form data-id="{{this.id}}" class="update-form">
-
-  <div class="form-group">
-    <label for="bu">Burger:</label>
-    <input type="text" id="bu" name="burger" value="{{this.burger}}">
-  </div>
-
-  <button type="submit">Update Burger</button>
-</form>
- --}}
 
 
 <div class="container">
-    <section id="page-name">
-            <h1>Eat-Da-Buger</h1>
-    </section>
 
-    <section class="row">
-        <div class="col-md-7 col-left">
-            <table>
-                {{#each burgers}}
-                    {{#unless devoured}}
-                        {{> burgers}}
-                    {{/unless}}
-                {{/each}}
-            </table>
-        </div>
-        <div class="col-md-5 col-right">
-            {{#each burgers}}
-                {{#if devoured}}
-                    <div>{{id}}. {{burger_name}}</div>
-                {{/if}}
-            {{/each}}        
-        </div>          
-    </section>
+			<img id="burger_img" width="100px" src="/assets/img/burger.png" alt="burger"> 
 
-    <tr class="table-row">
-       <td class="table-first-col">{{id}}. {{burger_name}}</td>
-       <td><button class="change-devour" data-id="{{id}}">Devour it!</button></td> 
-    </tr>
+	<div class="row">
 
-    <form class="create-form">
-        <div class="form-group">
-            <label for="name"></label>
-            <textarea id="name" name="burger-name" rows="2" cols="40" placeholder="What do you want to eat?"></textarea>
-        </div>
-        <button type="submit">Add Burger</button>
-    </form>     
+		<div class="col-md-12">
+			<h1 class="text-center text-danger">Eat-Da-Burger!</h1>
+		</div>
+	
+	<!-- end second row -->
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-6">
+	
+			<ul>
+				{{#each burgers}}
+					{{#unless this.devoured}}
+							<h5 id="bur">{{this.id}}. {{this.burger_name}}
+								<form action='burgers/updateOne/{{this.id}}?_method=PUT' method='POST'>
+									<input type='hidden' name='devoured' value='true'>
+									{{!-- <input type='text' name='devoured' value= "{{this.id}}. {{this.burger_name}}"> --}}
+									<button type='submit' class="btn btn-default">Devour it!</button>
+								</form>
+							</h5>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div>
+
+		<div class="col-md-6">
+		
+				{{#each burgers}}
+					{{#if this.devoured}}
+							<h5 class="text-muted">{{this.id}}. {{this.burger_name}}</h5>
+					{{/if}}
+				{{/each}}
+			
+		</div>
+
+	<!-- end third row -->
+	</div>
+
+	<br><br>
+
+	<div class="row">
+
+		<div class="col-md-12 text-center">
+			<form class="create-update-form" action="burgers/insertOne" method="POST">
+				<div class="form-group">
+					
+					<textarea type="text" name="name"></textarea><br>
+					<button class="btn btn-primary" type="submit">Submit</button>
+					<h5 class="text-center">Enter a burger you want to eat and click Submit!</h5>
+				</div>
+			</form>
+		</div>
+
+	<!-- end fourth row -->
+	</div>
+
+<!-- end bootstrap container -->
 </div>
+
