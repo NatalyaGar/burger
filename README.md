@@ -7,3 +7,4 @@ This is a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM
 * The app will store every burger in a database, whether devoured or not.
 
 
+* Check out the app https://git.heroku.com/eat-da-burger9.git
